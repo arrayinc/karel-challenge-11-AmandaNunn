@@ -28,3 +28,62 @@ There are many different algorithms you can use to solve this problem. The
 interesting challenge is to come up with a strategy that works.
 */
 import "turns";
+
+function SolveChallenge(){
+	markEdges();
+	while(noBeepersPresent()){
+		findMiddle();
+	}
+	getToWall();
+	removeExtraBeepers();
+	turnAround();
+	getBackToBeeper();
+}
+
+function markEdges(){
+	putBeeper();
+	while(frontIsClear()){
+		move();
+	}
+	turnAround();
+	putBeeper();
+	move();
+}
+
+function findMiddle(){
+	while(noBeepersPresent()){
+		move();
+	}
+	turnAround();
+	move();
+	putBeeper();
+	move();
+	if(beepersPresent()){
+		turnAround();
+		move();
+		putBeeper();
+	}
+}
+
+function removeExtraBeepers(){
+	while(frontIsClear()){
+		pickBeeper();
+		if(frontIsClear()){
+			move();
+		}
+	}
+	pickBeeper();
+}
+
+function getToWall(){
+	while(frontIsClear()){
+		move();
+	}
+	turnAround();
+}
+
+function getBackToBeeper(){
+	while(noBeepersPresent()){
+		move();
+	}
+}
